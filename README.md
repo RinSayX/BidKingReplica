@@ -2,7 +2,7 @@
 
 本项目是对 Steam 平台游戏《竞拍之王》（Bid King）核心玩法的非官方复刻，仅用于 AI 辅助游戏开发相关技术的学习与研究目的。本项目与原游戏开发者、发行方或 Steam 平台不存在任何关联、授权或背书关系。
 
-本项目不得用于任何形式的商业用途。如本项目中的任何内容侵犯了您的合法权益，请及时与我联系。
+本项目不得用于任何形式的商业用途！如本项目中的任何内容侵犯了您的合法权益，请及时与我联系。
 
 联系邮箱：[**snoinss@gmail.com**](mailto:snoinss@gmail.com)
 
@@ -14,7 +14,7 @@
 
 This project is an unofficial recreation of the core gameplay of the Steam game *Bid King* and is intended solely for learning and research purposes related to AI-assisted game development. This project is not affiliated with, endorsed by, or authorized by the original developers, publishers, or the Steam platform.
 
-This project must not be used for any commercial purposes. If you believe that any content in this project infringes upon your legal rights, please contact me promptly.
+This project must not be used for any commercial purposes! If you believe that any content in this project infringes upon your legal rights, please contact me promptly.
 
 Contact email: [**snoinss@gmail.com**](mailto:snoinss@gmail.com)
 
