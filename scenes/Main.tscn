@@ -1,0 +1,250 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvyjoam56o782"]
+
+[ext_resource type="Script" path="res://scripts/core/GameManager.gd" id="1_gamemanager"]
+[ext_resource type="Script" path="res://scripts/network/NetworkManager.gd" id="2_networkmanager"]
+[ext_resource type="Script" path="res://scripts/ui/UIManager.gd" id="3_uimanager"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gamemanager")
+
+[node name="NetworkManager" type="Node" parent="."]
+script = ExtResource("2_networkmanager")
+
+[node name="UIManager" type="Node" parent="."]
+script = ExtResource("3_uimanager")
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="RootVBox" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderPanel" type="PanelContainer" parent="SafeArea/RootVBox"]
+layout_mode = 2
+
+[node name="HeaderHBox" type="HBoxContainer" parent="SafeArea/RootVBox/HeaderPanel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="SafeArea/RootVBox/HeaderPanel/HeaderHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "竞拍之王复刻版"
+
+[node name="RoundLabel" type="Label" parent="SafeArea/RootVBox/HeaderPanel/HeaderHBox"]
+layout_mode = 2
+text = "第 1 轮 / 共 6 轮"
+
+[node name="RuleLabel" type="Label" parent="SafeArea/RootVBox/HeaderPanel/HeaderHBox"]
+layout_mode = 2
+text = "规则：> 100%"
+
+[node name="CountdownLabel" type="Label" parent="SafeArea/RootVBox/HeaderPanel/HeaderHBox"]
+layout_mode = 2
+text = "倒计时：--"
+
+[node name="ConnectionPanel" type="PanelContainer" parent="SafeArea/RootVBox"]
+layout_mode = 2
+
+[node name="ConnectionMargin" type="MarginContainer" parent="SafeArea/RootVBox/ConnectionPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="ConnectionVBox" type="VBoxContainer" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ConnectionStatusLabel" type="Label" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox"]
+layout_mode = 2
+text = "输入名字后可以直接开房或加入房间。"
+autowrap_mode = 3
+
+[node name="ControlsRow" type="HBoxContainer" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="NameEdit" type="LineEdit" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox/ControlsRow"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "玩家"
+placeholder_text = "玩家名称"
+
+[node name="HostAddressEdit" type="LineEdit" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox/ControlsRow"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "127.0.0.1"
+placeholder_text = "服务器地址"
+
+[node name="PortSpinBox" type="SpinBox" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox/ControlsRow"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+min_value = 1024.0
+max_value = 65535.0
+value = 7000.0
+rounded = true
+
+[node name="ButtonsRow" type="HBoxContainer" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HostButton" type="Button" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox/ButtonsRow"]
+layout_mode = 2
+text = "创建房间"
+
+[node name="JoinButton" type="Button" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox/ButtonsRow"]
+layout_mode = 2
+text = "加入房间"
+
+[node name="ReadyButton" type="Button" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox/ButtonsRow"]
+layout_mode = 2
+disabled = true
+text = "准备"
+
+[node name="LeaveButton" type="Button" parent="SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox/ButtonsRow"]
+layout_mode = 2
+disabled = true
+text = "离开房间"
+
+[node name="ContentHBox" type="HBoxContainer" parent="SafeArea/RootVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="WarehouseSection" type="PanelContainer" parent="SafeArea/RootVBox/ContentHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="WarehouseVBox" type="VBoxContainer" parent="SafeArea/RootVBox/ContentHBox/WarehouseSection"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WarehouseTitle" type="Label" parent="SafeArea/RootVBox/ContentHBox/WarehouseSection/WarehouseVBox"]
+layout_mode = 2
+text = "仓库"
+
+[node name="WarehouseGrid" type="PanelContainer" parent="SafeArea/RootVBox/ContentHBox/WarehouseSection/WarehouseVBox"]
+custom_minimum_size = Vector2(620, 620)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridHintLabel" type="Label" parent="SafeArea/RootVBox/ContentHBox/WarehouseSection/WarehouseVBox"]
+layout_mode = 2
+text = "对局中只显示占用格子与轮廓。结算后会揭晓品级颜色和总价值。"
+autowrap_mode = 3
+
+[node name="CenterSection" type="VBoxContainer" parent="SafeArea/RootVBox/ContentHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="AuctionSection" type="PanelContainer" parent="SafeArea/RootVBox/ContentHBox/CenterSection"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AuctionVBox" type="VBoxContainer" parent="SafeArea/RootVBox/ContentHBox/CenterSection/AuctionSection"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AuctionTitle" type="Label" parent="SafeArea/RootVBox/ContentHBox/CenterSection/AuctionSection/AuctionVBox"]
+layout_mode = 2
+text = "竞拍记录"
+
+[node name="BidLog" type="RichTextLabel" parent="SafeArea/RootVBox/ContentHBox/CenterSection/AuctionSection/AuctionVBox"]
+custom_minimum_size = Vector2(360, 300)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_following = true
+
+[node name="ActionSection" type="PanelContainer" parent="SafeArea/RootVBox/ContentHBox/CenterSection"]
+layout_mode = 2
+
+[node name="ActionVBox" type="VBoxContainer" parent="SafeArea/RootVBox/ContentHBox/CenterSection/ActionSection"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BidInputLabel" type="Label" parent="SafeArea/RootVBox/ContentHBox/CenterSection/ActionSection/ActionVBox"]
+layout_mode = 2
+text = "你的出价"
+
+[node name="BidSpinBox" type="SpinBox" parent="SafeArea/RootVBox/ContentHBox/CenterSection/ActionSection/ActionVBox"]
+layout_mode = 2
+max_value = 1e+07
+rounded = true
+
+[node name="SubmitBidButton" type="Button" parent="SafeArea/RootVBox/ContentHBox/CenterSection/ActionSection/ActionVBox"]
+layout_mode = 2
+text = "出价"
+
+[node name="NextRoundButton" type="Button" parent="SafeArea/RootVBox/ContentHBox/CenterSection/ActionSection/ActionVBox"]
+layout_mode = 2
+disabled = true
+text = "等待服务器结算"
+
+[node name="PlayersSection" type="PanelContainer" parent="SafeArea/RootVBox/ContentHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlayersVBox" type="VBoxContainer" parent="SafeArea/RootVBox/ContentHBox/PlayersSection"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PlayersTitle" type="Label" parent="SafeArea/RootVBox/ContentHBox/PlayersSection/PlayersVBox"]
+layout_mode = 2
+text = "玩家列表"
+
+[node name="PlayersList" type="VBoxContainer" parent="SafeArea/RootVBox/ContentHBox/PlayersSection/PlayersVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="FooterSection" type="PanelContainer" parent="SafeArea/RootVBox"]
+layout_mode = 2
+
+[node name="FooterVBox" type="VBoxContainer" parent="SafeArea/RootVBox/FooterSection"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ResultTitle" type="Label" parent="SafeArea/RootVBox/FooterSection/FooterVBox"]
+layout_mode = 2
+text = "本轮结果 / 最终排名"
+
+[node name="ResultText" type="RichTextLabel" parent="SafeArea/RootVBox/FooterSection/FooterVBox"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+bbcode_enabled = true
+scroll_following = true

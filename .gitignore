@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Godot editor cache and local metadata
+.godot/
+.godot_home/
+
+# Build artifacts
+build/
+
+# Optional local import cache directories
+.import/
+
+# Logs and temporary files
+*.log
+*.tmp
