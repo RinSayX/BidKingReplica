@@ -133,6 +133,7 @@ var _root: Control
 var _round_label: Label
 var _rule_label: Label
 var _countdown_label: Label
+var _value_guide_button: Button
 var _connection_status_label: Label
 var _player_name_edit: LineEdit
 var _host_address_edit: LineEdit
@@ -149,6 +150,10 @@ var _submit_bid_button: Button
 var _next_round_button: Button
 var _players_list: VBoxContainer
 var _result_text: RichTextLabel
+var _value_guide_overlay: Control
+var _value_guide_backdrop: ColorRect
+var _value_guide_text: RichTextLabel
+var _value_guide_close_button: Button
 
 var _player_row_map: Dictionary = {}
 var _grid_size: Vector2i = Vector2i(20, 20)
@@ -164,6 +169,7 @@ func bind(root: Control) -> void:
 	_round_label = _root.get_node("SafeArea/RootVBox/HeaderPanel/HeaderHBox/RoundLabel")
 	_rule_label = _root.get_node("SafeArea/RootVBox/HeaderPanel/HeaderHBox/RuleLabel")
 	_countdown_label = _root.get_node("SafeArea/RootVBox/HeaderPanel/HeaderHBox/CountdownLabel")
+	_value_guide_button = _root.get_node("SafeArea/RootVBox/HeaderPanel/HeaderHBox/ValueGuideButton")
 	_connection_status_label = _root.get_node("SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox/ConnectionStatusLabel")
 	_player_name_edit = _root.get_node("SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox/ControlsRow/NameEdit")
 	_host_address_edit = _root.get_node("SafeArea/RootVBox/ConnectionPanel/ConnectionMargin/ConnectionVBox/ControlsRow/HostAddressEdit")
@@ -180,16 +186,28 @@ func bind(root: Control) -> void:
 	_next_round_button = _root.get_node("SafeArea/RootVBox/ContentHBox/CenterSection/ActionSection/ActionVBox/NextRoundButton")
 	_players_list = _root.get_node("SafeArea/RootVBox/ContentHBox/PlayersSection/PlayersVBox/PlayersList")
 	_result_text = _root.get_node("SafeArea/RootVBox/FooterSection/FooterVBox/ResultText")
+	_value_guide_overlay = _root.get_node("ValueGuideOverlay")
+	_value_guide_backdrop = _root.get_node("ValueGuideOverlay/Backdrop")
+	_value_guide_text = _root.get_node("ValueGuideOverlay/Center/Panel/Margin/VBox/GuideText")
+	_value_guide_close_button = _root.get_node("ValueGuideOverlay/Center/Panel/Margin/VBox/CloseButton")
 
 	_host_button.pressed.connect(_on_host_pressed)
 	_join_button.pressed.connect(_on_join_pressed)
 	_ready_button.pressed.connect(_on_ready_pressed)
 	_leave_button.pressed.connect(_on_leave_pressed)
 	_submit_bid_button.pressed.connect(_on_submit_bid_pressed)
+	_value_guide_button.pressed.connect(_open_value_guide)
+	_value_guide_close_button.pressed.connect(_close_value_guide)
+	_value_guide_backdrop.gui_input.connect(_on_value_guide_backdrop_input)
 
 	_next_round_button.disabled = true
 	_next_round_button.text = "等待服务器结算"
 	_bid_input_label.text = "你的出价"
+	_value_guide_button.text = "价值参考"
+	_value_guide_close_button.text = "关闭"
+	_value_guide_overlay.visible = false
+	_value_guide_text.clear()
+	_value_guide_text.append_text(_build_value_guide_text())
 
 	_prepare_warehouse_grid()
 	clear_bid_log()
@@ -437,7 +455,7 @@ func show_final_results(items: Array[ItemData], ranking: Array[Dictionary], auct
 	lines.append("")
 
 	for item in items:
-		lines.append("物品 #%d | 格数:%d | 品级:%s | 单格:%d | 总值:%d" % [
+		lines.append("物品 #%d | 格数:%d | 品质:%s | 单格:%d | 总值:%d" % [
 			item.id,
 			item.get_cell_count(),
 			item.get_rarity_name(),
@@ -492,6 +510,48 @@ func set_match_active(active: bool) -> void:
 		_next_round_button.text = "等待房间开始"
 
 	_next_round_button.disabled = true
+
+
+func _build_value_guide_text() -> String:
+	var lines: Array[String] = []
+	lines.append("不同品质物品的单格价值参考")
+	lines.append("")
+	lines.append("红：30000 ~ 200000")
+	lines.append("黄：8000 ~ 50000")
+	lines.append("紫：6000 ~ 15000")
+	lines.append("蓝：5000 ~ 10000")
+	lines.append("绿：2000 ~ 8000")
+	lines.append("白：1000 ~ 5000")
+	lines.append("")
+	lines.append("本局通用规则")
+	lines.append("")
+	lines.append("1. 仓库大小：20 x 20")
+	lines.append("2. 物品数量：40 ~ 80")
+	lines.append("3. 物品形状：矩形")
+	lines.append("4. 单个物品边长不超过 5 格")
+	lines.append("5. 红色品质物品有较高概率出现")
+	lines.append("")
+	lines.append("竞拍提示")
+	lines.append("")
+	lines.append("1. 你只能看到物品轮廓，无法看到品质与真实价值。")
+	lines.append("2. 成交后收益 = 仓库真实总价值 - 成交价格。")
+	lines.append("3. 出价过高时，即使成交也可能得到负分。")
+	lines.append("4. 大面积物品不一定更值钱，价值仍由隐藏品质决定。")
+	return "\n".join(lines)
+
+
+func _open_value_guide() -> void:
+	_value_guide_overlay.visible = true
+	_value_guide_text.scroll_to_line(0)
+
+
+func _close_value_guide() -> void:
+	_value_guide_overlay.visible = false
+
+
+func _on_value_guide_backdrop_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		_close_value_guide()
 
 
 func _on_host_pressed() -> void:

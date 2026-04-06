@@ -68,6 +68,10 @@ text = "规则：> 100%"
 layout_mode = 2
 text = "倒计时：--"
 
+[node name="ValueGuideButton" type="Button" parent="SafeArea/RootVBox/HeaderPanel/HeaderHBox"]
+layout_mode = 2
+text = "价值参考"
+
 [node name="ConnectionPanel" type="PanelContainer" parent="SafeArea/RootVBox"]
 layout_mode = 2
 
@@ -161,7 +165,7 @@ size_flags_vertical = 3
 
 [node name="GridHintLabel" type="Label" parent="SafeArea/RootVBox/ContentHBox/WarehouseSection/WarehouseVBox"]
 layout_mode = 2
-text = "对局中只显示占用格子与轮廓。结算后会揭晓品级颜色和总价值。"
+text = "对局中只显示占用格子与轮廓。结算后会揭晓品质颜色和总价值。"
 autowrap_mode = 3
 
 [node name="CenterSection" type="VBoxContainer" parent="SafeArea/RootVBox/ContentHBox"]
@@ -248,3 +252,62 @@ custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 bbcode_enabled = true
 scroll_following = true
+
+[node name="ValueGuideOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Backdrop" type="ColorRect" parent="ValueGuideOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="ValueGuideOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="ValueGuideOverlay/Center"]
+custom_minimum_size = Vector2(640, 560)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="ValueGuideOverlay/Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 18
+
+[node name="VBox" type="VBoxContainer" parent="ValueGuideOverlay/Center/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="ValueGuideOverlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+text = "价值参考"
+
+[node name="GuideText" type="RichTextLabel" parent="ValueGuideOverlay/Center/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(600, 420)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="CloseButton" type="Button" parent="ValueGuideOverlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "关闭"

@@ -135,7 +135,7 @@ func get_display_color() -> Color:
 
 
 func get_debug_summary() -> String:
-	return "Item #%d | 格数:%d | 品级:%s | 单格:%d | 总值:%d" % [
+	return "Item #%d | 格数:%d | 品质:%s | 单格:%d | 总值:%d" % [
 		id,
 		get_cell_count(),
 		get_rarity_name(),
