@@ -1,6 +1,32 @@
-# 竞拍之王_复刻版
+## ⚖️ 版权声明 / Copyright Notice
 
-一个使用 Godot 4.2 + GDScript 开发的多人在线竞拍博弈游戏。玩家根据仓库中隐藏物品的轮廓信息进行盲拍，在有限轮次内竞争整个仓库的成交权。
+本项目为对 Steam 平台游戏《竞拍之王》（Bid King）核心玩法的非官方复刻，仅用于 AI 辅助游戏开发相关技术的学习与研究目的。本项目与原游戏开发者、发行方或 Steam 平台不存在任何关联、授权或背书关系。
+
+本项目不得用于任何形式的商业用途。如本项目中的任何内容侵犯了您的合法权益，请及时与我联系。
+
+联系邮箱：[**snoinss@gmail.com**](mailto:snoinss@gmail.com)
+
+在收到通知并核实后，我将尽快删除或修改相关内容。
+
+感谢您的理解与支持。
+
+---
+
+This project is an unofficial recreation of the core gameplay of the Steam game *Bid King* and is intended solely for learning and research purposes related to AI-assisted game development. This project is not affiliated with, endorsed by, or authorized by the original developers, publishers, or the Steam platform.
+
+This project must not be used for any commercial purposes. If you believe that any content in this project infringes upon your legal rights, please contact me promptly.
+
+Contact email: [**snoinss@gmail.com**](mailto:snoinss@gmail.com)
+
+Upon receiving your notice and verifying the issue, I will promptly remove or modify the relevant content.
+
+Thank you for your understanding and support.
+
+---
+
+## 竞拍之王_复刻版
+
+本游戏是一个使用 Godot 4.2 + GDScript 开发的多人在线竞拍博弈游戏。玩家根据仓库中隐藏物品的轮廓信息进行盲拍，在有限轮次内竞争整个仓库的成交权。
 
 ## 项目简介
 
@@ -12,7 +38,29 @@
 - 物品数量：每局 40 到 80 个
 - 核心玩法：根据隐藏物品的占格轮廓进行整仓盲拍
 
-## 核心规则
+## AI 开发说明
+
+本项目在开发过程中使用了 AI 辅助编程工具参与需求落地、代码实现、联机逻辑调整、UI 调整、文档整理与导出流程辅助。
+
+- AI 工具：OpenAI Codex
+- 使用形态：Codex 桌面编码代理
+- 使用模型：GPT-5
+
+AI 主要参与的工作包括：
+
+- GDScript 模块代码编写与重构
+- Godot 场景与 UI 文案调整
+- ENet 联机房间制逻辑迭代
+- Windows 导出流程辅助
+- README 文档整理
+
+需要说明的是：
+
+- AI 负责辅助开发，不代表所有设计决策完全自动生成
+- 项目的功能验证、运行测试与最终版本保留，仍以本地工程实际结果为准
+
+## 游戏核心规则
+参考《竞拍之王》的核心玩法，仅实现了竞拍流程，未引入物品类型、玩家角色和技能等系统。
 
 ### 1. 仓库与物品
 
