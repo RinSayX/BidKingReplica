@@ -54,7 +54,7 @@ theme_override_constants/separation = 14
 [node name="TitleLabel" type="Label" parent="SafeArea/RootVBox/HeaderPanel/HeaderHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "竞拍之王复刻版"
+text = "竞拍之王_复刻版"
 
 [node name="RoundLabel" type="Label" parent="SafeArea/RootVBox/HeaderPanel/HeaderHBox"]
 layout_mode = 2
